@@ -6,4 +6,5 @@
     <string name="Enter_to_system">Вход в Систему</string>
     <string name="Registration">Зарегистрируйтесь, если у вас нет учетной записи</string>
     <string name="Remind_password">Забыли пароль?</string>
+    <string name="Success_enter">Вы успешно зашли в систему</string>
 </resources>
