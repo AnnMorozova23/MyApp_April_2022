@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_to_image_85_dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_no_photo" />
+
+        <TextView
+            android:id="@+id/enter_to_system"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/Enter_to_system"
+            android:textSize="@dimen/text_size_20dp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_35_dp"
+            android:layout_marginRight="@dimen/margin_35_dp"
+            android:backgroundTint="@color/color_gold"
+            android:hint="@string/Login" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_35_dp"
+            android:layout_marginRight="@dimen/margin_35_dp"
+            android:backgroundTint="@color/color_gold"
+            android:hint="@string/Password" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/enter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_35_dp"
+            android:layout_marginRight="@dimen/margin_35_dp"
+            android:backgroundTint="@color/color_gold"
+            android:text="@string/Enter"
+            android:textSize="@dimen/text_size_20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_35_dp"
+            android:layout_marginRight="@dimen/margin_35_dp"
+            android:text="@string/Registration" />
+
+        <TextView
+            android:id="@+id/remind_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_35_dp"
+            android:layout_marginRight="@dimen/margin_35_dp"
+            android:text="@string/Remind_password" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

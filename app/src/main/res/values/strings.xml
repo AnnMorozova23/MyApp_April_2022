@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MyApp_April_2022</string>
+    <string name="Login">Введите Логин</string>
+    <string name="Password">Введите Пароль</string>
+    <string name="Enter">Войти</string>
+    <string name="Enter_to_system">Вход в Систему</string>
+    <string name="Registration">Зарегистрируйтесь, если у вас нет учетной записи</string>
+    <string name="Remind_password">Забыли пароль?</string>
+</resources>
