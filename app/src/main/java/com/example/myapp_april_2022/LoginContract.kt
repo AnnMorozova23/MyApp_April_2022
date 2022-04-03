@@ -7,6 +7,10 @@ class LoginContract {
         fun setError()
         fun showProgress()
         fun hideProgress()
+        fun setRegistrationSuccess()
+        fun chekLogin()
+        fun backLogin()
+        fun sendPassword()
 
     }
 
@@ -14,8 +18,7 @@ class LoginContract {
 
         fun onAttach(view: View)
         fun onLogin(login: String, password: String)
-        fun onCredentials(login: String, password: String)
-        fun onRegistration()
+        fun onRegistration(login: String, password: String)
         fun onRemindPassword()
 
     }

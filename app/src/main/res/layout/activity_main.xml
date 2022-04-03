@@ -37,8 +37,7 @@
             android:gravity="center"
             android:text="@string/Success_enter"
             android:textSize="@dimen/text_size_20dp"
-            android:visibility="invisible"
-            />
+            android:visibility="invisible" />
 
 
         <androidx.appcompat.widget.AppCompatEditText
@@ -76,7 +75,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_35_dp"
             android:layout_marginRight="@dimen/margin_35_dp"
-            android:text="@string/Registration" />
+            android:text="@string/Registration"
+            android:textColor="@color/color_gold"
+            android:textIsSelectable="true" />
 
         <TextView
             android:id="@+id/remind_password"
@@ -84,13 +85,27 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_35_dp"
             android:layout_marginRight="@dimen/margin_35_dp"
-            android:text="@string/Remind_password" />
+            android:text="@string/Remind_password"
+            android:textColor="@color/color_gold"
+            android:textIsSelectable="true" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:progressBackgroundTint="@color/color_gold"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/back_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_55_dp"
+            android:layout_marginRight="@dimen/margin_55_dp"
+            android:backgroundTint="@color/color_gold"
+            android:text="@string/Back"
+            android:textSize="@dimen/text_size_20dp"
+            android:textStyle="bold"
             android:visibility="invisible" />
 
 
