@@ -3,10 +3,16 @@ package com.example.myapp_april_2022.ui.login
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
+import com.example.myapp_april_2022.App
+import com.example.myapp_april_2022.app
+import com.example.myapp_april_2022.data.LoginUseCaseImpl
 import com.example.myapp_april_2022.databinding.ActivityMainBinding
+import com.example.myapp_april_2022.domain.LoginUseCase
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), LoginContract.View {
@@ -47,7 +53,8 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
 
     private fun restorePresenter(): Presenter {
         val presenter = onRetainCustomNonConfigurationInstance() as? Presenter
-        return presenter ?: Presenter()
+        val useCase: LoginUseCase = LoginUseCaseImpl(app.api, Handler(Looper.getMainLooper()))
+        return presenter ?: Presenter(app.api, useCase)
     }
 
     override fun getLastNonConfigurationInstance(): Any? {
@@ -112,6 +119,7 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun backLogin() {
+        presenter?.onLogOut()
         binding.editLoginTextView.isVisible = true
         binding.enterToSystemTextView.isVisible = true
         binding.editPasswordTextView.isVisible = true

@@ -20,6 +20,6 @@ class LoginContract {
         fun onLogin(login: String, password: String)
         fun onRegistration(login: String, password: String)
         fun onForgotPassword(login: String)
-
+        fun onLogOut():Boolean
     }
 }

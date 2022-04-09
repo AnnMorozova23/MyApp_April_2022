@@ -3,13 +3,13 @@ package com.example.myapp_april_2022.ui.login
 import android.os.Handler
 import android.os.Looper
 import com.example.myapp_april_2022.domain.LoginApi
-import com.example.myapp_april_2022.data.MockLoginApiImpl
+import com.example.myapp_april_2022.domain.LoginUseCase
 
 
-class Presenter : LoginContract.Presenter {
+class Presenter(private val api: LoginApi, private val loginUseCase: LoginUseCase ) : LoginContract.Presenter {
     private var view: LoginContract.View? = null
     private val myHandler = Handler(Looper.getMainLooper())
-    private var api: LoginApi = MockLoginApiImpl()
+
 
 
     override fun onAttach(view: LoginContract.View) {
@@ -19,14 +19,17 @@ class Presenter : LoginContract.Presenter {
 
     override fun onLogin(login: String, password: String) {
         view?.showProgress()
-        myHandler.post {
+
+        loginUseCase.login(login,password){ result->
             view?.hideProgress()
-            if ((api.login(login, password))) {
+            if (result) {
                 view?.setSuccess()
             } else {
                 view?.setError()
             }
+
         }
+
 
     }
 
@@ -35,12 +38,16 @@ class Presenter : LoginContract.Presenter {
 
             myHandler.post {
                 view?.hideProgress()
-                if (api.login(login, password)) {
-                    view?.chekLogin()
-                } else if (api.registration(login,password, mail = "")) {
-                    view?.setError()
-                } else {
-                    view?.setRegistrationSuccess()
+                when {
+                    api.login(login, password) -> {
+                        view?.chekLogin()
+                    }
+                    api.registration(login,password, mail = "") -> {
+                        view?.setError()
+                    }
+                    else -> {
+                        view?.setRegistrationSuccess()
+                    }
                 }
             }
     }
@@ -52,6 +59,11 @@ class Presenter : LoginContract.Presenter {
             view?.hideProgress()
             view?.sendPassword()
         }
+    }
+
+    override fun onLogOut(): Boolean {
+        api.logout()
+        return true
     }
 
 }

@@ -24,7 +24,10 @@ class MockLoginApiImpl : LoginApi {
      }
 
     override fun logout(): Boolean {
-        TODO("Not yet implemented")
+        Thread {
+            sleep(3_000)
+        }.start()
+        return true
     }
 
     override fun forgotPassword(login: String): Boolean {
