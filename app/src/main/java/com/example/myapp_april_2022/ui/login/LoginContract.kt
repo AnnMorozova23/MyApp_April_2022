@@ -1,4 +1,4 @@
-package com.example.myapp_april_2022
+package com.example.myapp_april_2022.ui.login
 
 class LoginContract {
 
@@ -19,7 +19,7 @@ class LoginContract {
         fun onAttach(view: View)
         fun onLogin(login: String, password: String)
         fun onRegistration(login: String, password: String)
-        fun onRemindPassword()
+        fun onForgotPassword(login: String)
 
     }
 }
