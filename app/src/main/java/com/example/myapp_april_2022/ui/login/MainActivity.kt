@@ -8,7 +8,6 @@ import android.os.Looper
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
-import com.example.myapp_april_2022.App
 import com.example.myapp_april_2022.app
 import com.example.myapp_april_2022.data.LoginUseCaseImpl
 import com.example.myapp_april_2022.databinding.ActivityMainBinding
@@ -53,8 +52,7 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
 
     private fun restorePresenter(): Presenter {
         val presenter = onRetainCustomNonConfigurationInstance() as? Presenter
-        val useCase: LoginUseCase = LoginUseCaseImpl(app.api, Handler(Looper.getMainLooper()))
-        return presenter ?: Presenter(app.api, useCase)
+        return presenter ?: Presenter(app.api, app.useCase)
     }
 
     override fun getLastNonConfigurationInstance(): Any? {

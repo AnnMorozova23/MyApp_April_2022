@@ -6,10 +6,10 @@ import com.example.myapp_april_2022.domain.LoginApi
 import com.example.myapp_april_2022.domain.LoginUseCase
 
 
-class Presenter(private val api: LoginApi, private val loginUseCase: LoginUseCase ) : LoginContract.Presenter {
+class Presenter(private val api: LoginApi, private val loginUseCase: LoginUseCase) :
+    LoginContract.Presenter {
     private var view: LoginContract.View? = null
     private val myHandler = Handler(Looper.getMainLooper())
-
 
 
     override fun onAttach(view: LoginContract.View) {
@@ -18,38 +18,37 @@ class Presenter(private val api: LoginApi, private val loginUseCase: LoginUseCas
 
 
     override fun onLogin(login: String, password: String) {
-        view?.showProgress()
 
-        loginUseCase.login(login,password){ result->
-            view?.hideProgress()
+        view?.showProgress()
+        loginUseCase.login(login, password) { result ->
             if (result) {
+                view?.hideProgress()
                 view?.setSuccess()
             } else {
+                view?.hideProgress()
                 view?.setError()
             }
-
         }
-
 
     }
 
 
     override fun onRegistration(login: String, password: String) {
 
-            myHandler.post {
-                view?.hideProgress()
-                when {
-                    api.login(login, password) -> {
-                        view?.chekLogin()
-                    }
-                    api.registration(login,password, mail = "") -> {
-                        view?.setError()
-                    }
-                    else -> {
-                        view?.setRegistrationSuccess()
-                    }
+        myHandler.post {
+            view?.hideProgress()
+            when {
+                api.login(login, password) -> {
+                    view?.chekLogin()
+                }
+                api.registration(login, password, mail = "") -> {
+                    view?.setError()
+                }
+                else -> {
+                    view?.setRegistrationSuccess()
                 }
             }
+        }
     }
 
     override fun onForgotPassword(login: String) {

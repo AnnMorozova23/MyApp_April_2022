@@ -20,8 +20,8 @@ class MockLoginApiImpl : LoginApi {
         Thread {
             sleep(2_000)
         }.start()
-      return (login.isEmpty() && password.isEmpty())
-     }
+        return (login.isEmpty() && password.isEmpty())
+    }
 
     override fun logout(): Boolean {
         Thread {
