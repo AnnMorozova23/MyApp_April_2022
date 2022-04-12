@@ -1,8 +1,10 @@
 package com.example.myapp_april_2022.ui.login
 
+import com.example.myapp_april_2022.utils.Publisher
+
 class LoginContract {
 
-    interface View {
+    /*interface View {
         fun setSuccess()
         fun setError()
         fun showProgress()
@@ -12,11 +14,17 @@ class LoginContract {
         fun backLogin()
         fun sendPassword()
 
-    }
+    }*/
 
-    interface Presenter {
+    interface ViewModel {
+        val shouldShowProgress: Publisher<Boolean>
+        val isSuccess: Publisher<Boolean>
+        val errorText:Publisher<String?>
+        val isRegistration: Publisher<Boolean>
+        val isSendPassword: Publisher<String>
 
-        fun onAttach(view: View)
+
+
         fun onLogin(login: String, password: String)
         fun onRegistration(login: String, password: String)
         fun onForgotPassword(login: String)
