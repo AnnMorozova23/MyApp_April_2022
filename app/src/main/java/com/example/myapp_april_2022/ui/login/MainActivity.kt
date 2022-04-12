@@ -1,12 +1,17 @@
-package com.example.myapp_april_2022
+package com.example.myapp_april_2022.ui.login
 
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
+import com.example.myapp_april_2022.app
+import com.example.myapp_april_2022.data.LoginUseCaseImpl
 import com.example.myapp_april_2022.databinding.ActivityMainBinding
+import com.example.myapp_april_2022.domain.LoginUseCase
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), LoginContract.View {
@@ -23,15 +28,15 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
 
         binding.enterBtn.setOnClickListener {
             presenter?.onLogin(
-                binding.editLogin.text.toString(),
-                binding.editPassword.text.toString()
+                binding.editLoginTextView.text.toString(),
+                binding.editPasswordTextView.text.toString()
             )
         }
 
-        binding.registration.setOnClickListener {
+        binding.registrationLinkTextView.setOnClickListener {
             presenter?.onRegistration(
-                binding.editLogin.text.toString(),
-                binding.editPassword.text.toString()
+                binding.editLoginTextView.text.toString(),
+                binding.editPasswordTextView.text.toString()
             )
         }
 
@@ -39,15 +44,15 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
             backLogin()
         }
 
-        binding.remindPassword.setOnClickListener {
-            presenter?.onRemindPassword()
+        binding.remindPasswordLinkTextView.setOnClickListener {
+            presenter?.onForgotPassword(login = "")
         }
 
     }
 
     private fun restorePresenter(): Presenter {
         val presenter = onRetainCustomNonConfigurationInstance() as? Presenter
-        return presenter ?: Presenter()
+        return presenter ?: Presenter(app.api, app.useCase)
     }
 
     override fun getLastNonConfigurationInstance(): Any? {
@@ -56,13 +61,13 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
 
 
     override fun setSuccess() {
-        binding.editLogin.isVisible = false
-        binding.enterToSystem.isVisible = false
-        binding.editPassword.isVisible = false
+        binding.editLoginTextView.isVisible = false
+        binding.enterToSystemTextView.isVisible = false
+        binding.editPasswordTextView.isVisible = false
         binding.enterBtn.isVisible = false
-        binding.registration.isVisible = false
-        binding.remindPassword.isVisible = false
-        binding.successEnter.isVisible = true
+        binding.registrationLinkTextView.isVisible = false
+        binding.remindPasswordLinkTextView.isVisible = false
+        binding.successLoginTextView.isVisible = true
         binding.backBtn.isVisible = true
     }
 
@@ -95,14 +100,14 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun setRegistrationSuccess() {
-        binding.editLogin.isVisible = false
-        binding.enterToSystem.isVisible = false
-        binding.editPassword.isVisible = false
+        binding.editLoginTextView.isVisible = false
+        binding.enterToSystemTextView.isVisible = false
+        binding.editPasswordTextView.isVisible = false
         binding.enterBtn.isVisible = false
-        binding.registration.isVisible = false
-        binding.remindPassword.isVisible = false
-        binding.successEnter.text = "Вы успешно прошли регистрацию!"
-        binding.successEnter.isVisible = true
+        binding.registrationLinkTextView.isVisible = false
+        binding.remindPasswordLinkTextView.isVisible = false
+        binding.successLoginTextView.text = "Вы успешно прошли регистрацию!"
+        binding.successLoginTextView.isVisible = true
         binding.backBtn.isVisible = true
 
     }
@@ -112,13 +117,14 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun backLogin() {
-        binding.editLogin.isVisible = true
-        binding.enterToSystem.isVisible = true
-        binding.editPassword.isVisible = true
+        presenter?.onLogOut()
+        binding.editLoginTextView.isVisible = true
+        binding.enterToSystemTextView.isVisible = true
+        binding.editPasswordTextView.isVisible = true
         binding.enterBtn.isVisible = true
-        binding.registration.isVisible = true
-        binding.remindPassword.isVisible = true
-        binding.successEnter.isVisible = false
+        binding.registrationLinkTextView.isVisible = true
+        binding.remindPasswordLinkTextView.isVisible = true
+        binding.successLoginTextView.isVisible = false
         binding.backBtn.isVisible = false
     }
 
