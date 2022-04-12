@@ -27,7 +27,6 @@ class LoginViewModel(private val api: LoginApi, private val loginUseCase: LoginU
 
                 shouldShowProgress.post(false)
                 isSuccess.post(true)
-                errorText.post("")
             } else {
                 shouldShowProgress.post(false)
                 errorText.post("Неверный логин или пароль, попробуйете еще раз")
