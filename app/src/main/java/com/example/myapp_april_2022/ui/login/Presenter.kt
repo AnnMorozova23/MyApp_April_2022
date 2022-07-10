@@ -10,10 +10,14 @@ class Presenter(private val api: LoginApi, private val loginUseCase: LoginUseCas
     LoginContract.Presenter {
     private var view: LoginContract.View? = null
     private val myHandler = Handler(Looper.getMainLooper())
+    private var isSuccess: Boolean = false
 
 
     override fun onAttach(view: LoginContract.View) {
         this.view = view
+        if (isSuccess) {
+            view.setSuccess()
+        }
     }
 
 
